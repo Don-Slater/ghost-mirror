@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="Resources/ghost-mirror-logo-replica.png" alt="Ghost Mirror — Ease Audio" width="520">
+  <img src=".github/ghost-mirror-icon.png" alt="Ghost Mirror" width="200">
+</p>
+
+<p align="center">
+  <img src="Resources/ghost-mirror-logo-replica.png" alt="Ghost Mirror — Ease Audio" width="480">
 </p>
 
 <h1 align="center">Ease Mirror™</h1>
