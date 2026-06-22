@@ -1,20 +1,14 @@
 <p align="center">
-  <img src=".github/ghost-mirror-icon.png" alt="Ghost Mirror" width="200">
+  <img src="Resources/ghost-mirror-logo-replica.png" alt="Ghost Mirror" width="520">
 </p>
-
-<p align="center">
-  <img src="Resources/ghost-mirror-logo-replica.png" alt="Ghost Mirror — Ease Audio" width="480">
-</p>
-
-<h1 align="center">Ease Mirror™</h1>
 
 <p align="center">
   <strong>Your Linux PC. Mirrored on Mac.</strong><br>
-  <sub>Ease Audio™ · Apple Silicon · Ghost Cloud</sub>
+  <sub>Ghost Mirror™ · Apple Silicon · Ghost Cloud</sub>
 </p>
 
 <p align="center">
-  <a href="#install-ease-mirror-mac">Mac install</a> ·
+  <a href="#install-ghost-mirror-mac">Mac install</a> ·
   <a href="#get-a-vps">Get a VPS</a> ·
   <a href="#install-ghost-cloud-vps">Ghost Cloud</a> ·
   <a href="#connect-mac-to-vps">Connect</a> ·
@@ -29,7 +23,7 @@
 
 ---
 
-Ease Mirror is a native macOS app from **Ease Audio** — Ubuntu on Apple Silicon via Apple's Virtualization framework, with optional **Ghost Cloud** encrypted vault on **your own VPS**.
+**Ghost Mirror** on Mac — Ubuntu on Apple Silicon via Apple's Virtualization framework, with optional **Ghost Cloud** encrypted vault on **your own VPS**.
 
 | Mode | What it does |
 |------|----------------|
@@ -41,7 +35,7 @@ Ease Mirror is a native macOS app from **Ease Audio** — Ubuntu on Apple Silico
 
 ## Before you start
 
-### Mac (Ease Mirror)
+### Mac (Ghost Mirror)
 
 - Apple Silicon Mac (M1 or later)
 - macOS 13 Ventura or newer
@@ -66,7 +60,7 @@ Copy the output and paste it into your VPS provider when you create the server.
 
 ---
 
-## Install Ease Mirror (Mac)
+## Install Ghost Mirror (Mac)
 
 ### Step 1 — Get the code
 
@@ -87,11 +81,13 @@ If macOS blocks the app:
 xattr -cr "Ease Mirror.app"
 ```
 
-### Step 3 — Open Ease Mirror
+### Step 3 — Open Ghost Mirror
 
 ```bash
 open "Ease Mirror.app"
 ```
+
+> The built app is currently named `Ease Mirror.app` on disk — window title shows **Ghost Mirror**.
 
 ### Step 4 — Download Ubuntu ISO
 
@@ -267,7 +263,7 @@ bash scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 
 **Producer on Mac:**
 
-1. Open **Ease Mirror** → **Start** Ubuntu.
+1. Open **Ghost Mirror** → **Start** Ubuntu.
 2. Click **Open Ghost Cloud** → upload/download WAVs and projects.
 3. Work in **Logic** on Mac.
 4. **Stop** the VM when done.
@@ -295,7 +291,7 @@ Nothing heavy lives in this Git repo (~4 MB source). Runtime data is on your Mac
 
 | Problem | Fix |
 |---------|-----|
-| Cannot open Ease Mirror.app | `xattr -cr "Ease Mirror.app"` |
+| Cannot open the app | `xattr -cr "Ease Mirror.app"` |
 | ISO missing | **Download ISO** in app or `bash scripts/download-ubuntu-iso.sh` |
 | VM won't boot | **Repair Boot** or `bash scripts/diagnose-local-vm.sh` |
 | Ghost Cloud won't load | Check firewall (443 or 8787), `systemctl status ghostcloud-app` on VPS |
@@ -307,7 +303,7 @@ Nothing heavy lives in this Git repo (~4 MB source). Runtime data is on your Mac
 ## Architecture
 
 ```
-Ease Mirror.app (SwiftUI)
+Ghost Mirror.app (SwiftUI — builds as Ease Mirror.app)
     └── EaseMirrorCore
             ├── VMStore          — VM definitions on disk
             ├── LinuxVMEngine    — Virtualization.framework
@@ -329,8 +325,8 @@ Ease Mirror.app (SwiftUI)
 
 ## License
 
-© **Ease Audio**. Ease Mirror™ and Ghost Mirror™ are trademarks of Ease Audio.
+© **Ghost Mirror™** · **Ghost Cloud™**
 
 VM patterns derived from Apple's Virtualization sample (Apple Sample Code License).
 
-**Ease Audio** — tools for producers who ship.
+**Ghost Mirror** — tools for producers who ship.
