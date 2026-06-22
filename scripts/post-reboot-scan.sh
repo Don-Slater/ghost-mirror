@@ -35,8 +35,8 @@ else
   fail "Ease Mirror.app missing — run: cd ${ROOT} && ./scripts/build.sh --release"
 fi
 
-if [[ -x "${ROOT}/.build/release/ease-mirror-cli" ]]; then
-  pass "ease-mirror-cli"
+if [[ -x "${ROOT}/.build/release/ghost-mirror-cli" ]]; then
+  pass "ghost-mirror-cli"
 else
   warn "CLI not built — run: cd ${ROOT} && swift build -c release"
 fi
@@ -84,8 +84,8 @@ fi
 
 echo ""
 echo "── Local mirrors ──"
-if [[ -x "${ROOT}/.build/release/ease-mirror-cli" ]]; then
-  "${ROOT}/.build/release/ease-mirror-cli" list 2>/dev/null || true
+if [[ -x "${ROOT}/.build/release/ghost-mirror-cli" ]]; then
+  "${ROOT}/.build/release/ghost-mirror-cli" list 2>/dev/null || true
 else
   echo "       (no CLI — skip)"
 fi

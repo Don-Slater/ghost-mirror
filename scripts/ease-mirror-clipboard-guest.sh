@@ -7,7 +7,7 @@ MOUNT="${EASE_MIRROR_SHARE_MOUNT:-$HOME/EaseMirrorShare}"
 HOST_FILE="$MOUNT/host_clipboard.txt"
 GUEST_FILE="$MOUNT/guest_clipboard.txt"
 HEARTBEAT="$MOUNT/guest_clipboard_alive"
-PID_FILE="${XDG_RUNTIME_DIR:-/tmp}/ease-mirror-clipboard.pid"
+PID_FILE="${XDG_RUNTIME_DIR:-/tmp}/ghost-mirror-clipboard.pid"
 
 mount_share() {
   if ! (ls "/sys/fs/virtiofs/${TAG}" >/dev/null 2>&1 || \

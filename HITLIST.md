@@ -1,4 +1,4 @@
-# Ease Mirror — Product hit list (tuning)
+# Ghost Mirror — Product hit list (tuning)
 
 Quick priorities. **Full fiddly detail → [BLACKBOOK.md](./BLACKBOOK.md)**
 

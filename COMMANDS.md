@@ -1,4 +1,4 @@
-# Ease Mirror — Command Walkthrough
+# Ghost Mirror — Command Walkthrough
 
 **Do it this way. Not the 5-minute YouTube way.**
 
@@ -9,14 +9,14 @@ Copy one block at a time. Wait for ✅ before the next step.
 ## STEP 0 — Reboot line (after power cut)
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
+bash ~/ghost-mirror/scripts/connect-cloud-mirror.sh --check
 ```
 
 **Expect:** `OK` and `VNC:up`
 
 If `VNC:down`:
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/fix-vnc-service.sh
+bash ~/ghost-mirror/scripts/fix-vnc-service.sh
 ```
 
 See **[STATUS.md](./STATUS.md)** for honest project state.
@@ -26,7 +26,7 @@ See **[STATUS.md](./STATUS.md)** for honest project state.
 ## STEP 0b — Open this file + Terminal
 
 ```bash
-cd ~/BenStudio/EaseMirror
+cd ~/ghost-mirror
 ```
 
 Keep Terminal on the left. This file on the right. YouTube can wait.
@@ -36,34 +36,34 @@ Keep Terminal on the left. This file on the right. YouTube can wait.
 ## STEP 1 — Check the app is built
 
 ```bash
-cd ~/BenStudio/EaseMirror
-.build/release/ease-mirror-cli paths
+cd ~/ghost-mirror
+.build/release/ghost-mirror-cli paths
 ```
 
 **Expect:**
 ```
-App support: .../EaseMirror
-VMs:         .../EaseMirror/VMs
+App support: .../GhostMirror
+VMs:         .../GhostMirror/VMs
 ISO:         .../ubuntu-24.04.4-desktop-arm64.iso
-Share:       .../EaseMirror/Share
+Share:       .../GhostMirror/Share
 ```
 
 ✅ Paths print → go Step 2
 
 ---
 
-## STEP 2 — Open Ease Mirror app
+## STEP 2 — Open Ghost Mirror app
 
 ```bash
-open ~/BenStudio/EaseMirror/Ease\ Mirror.app
+open ~/ghost-mirror/Ease\ Mirror.app
 ```
 
 ✅ App window opens → go Step 3
 
 **If macOS blocks it:**
 ```bash
-xattr -cr ~/BenStudio/EaseMirror/Ease\ Mirror.app
-open ~/BenStudio/EaseMirror/Ease\ Mirror.app
+xattr -cr ~/ghost-mirror/Ease\ Mirror.app
+open ~/ghost-mirror/Ease\ Mirror.app
 ```
 
 ---
@@ -71,7 +71,7 @@ open ~/BenStudio/EaseMirror/Ease\ Mirror.app
 ## STEP 3 — Cloud VPS quick check (does not hang)
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
+bash ~/ghost-mirror/scripts/connect-cloud-mirror.sh --check
 ```
 
 **Expect:** `OK` + `VNC:up` + `ls` shows GhostHome folders
@@ -83,14 +83,14 @@ bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
 ## STEP 4 — VNC tunnel status
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP status
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP status
 ```
 
 **Expect:** `running` or `running (port 6080 in use)`
 
 If **stopped**, start it:
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
 ```
 
 ✅ Tunnel running → go Step 5
@@ -99,22 +99,22 @@ bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
 
 ## STEP 5 — Open Linux desktop (no Microsoft)
 
-**Option A — inside Ease Mirror app**
+**Option A — inside Ghost Mirror app**
 
 1. Sidebar → **Cloud Mirror**
-2. IP: `YOUR_VPS_IP` (from `~/.ben_studio/ease_mirror_cloud.env`)
+2. IP: `YOUR_VPS_IP` (from `~/.ben_studio/ghost_mirror_cloud.env`)
 3. Click **Open Cloud Desktop**
 
 **Option B — Terminal**
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-desktop.sh
+bash ~/ghost-mirror/scripts/connect-cloud-desktop.sh
 ```
 
 **Option C — browser only**
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
 open "http://127.0.0.1:6080/vnc.html?autoconnect=true&resize=scale"
 ```
 
@@ -146,8 +146,8 @@ ghostcloud list
 ## STEP 8 — Download Ubuntu ISO (~3 GB, local mirror)
 
 ```bash
-cd ~/BenStudio/EaseMirror
-.build/release/ease-mirror-cli download-iso
+cd ~/ghost-mirror
+.build/release/ghost-mirror-cli download-iso
 ```
 
 Wait for finish. Go make tea. Not a 5-min YouTube skip.
@@ -159,8 +159,8 @@ Wait for finish. Go make tea. Not a 5-min YouTube skip.
 ## STEP 9 — Create local mirror
 
 ```bash
-.build/release/ease-mirror-cli create "Ease Mirror" --memory 8 --disk 32
-.build/release/ease-mirror-cli list
+.build/release/ghost-mirror-cli create "Ghost Mirror" --memory 8 --disk 32
+.build/release/ghost-mirror-cli list
 ```
 
 ✅ Mirror listed → go Step 10
@@ -169,8 +169,8 @@ Wait for finish. Go make tea. Not a 5-min YouTube skip.
 
 ## STEP 10 — Boot Ubuntu installer (in app)
 
-1. Open **Ease Mirror.app**
-2. Select **Ease Mirror**
+1. Open **Ghost Mirror.app**
+2. Select **Ghost Mirror**
 3. Click **Start**
 4. Install Ubuntu in the window
 5. When done → **Mark Installed**
@@ -182,33 +182,33 @@ Wait for finish. Go make tea. Not a 5-min YouTube skip.
 
 **Stop VNC tunnel**
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 ```
 
 **SSH into cloud**
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh
+bash ~/ghost-mirror/scripts/connect-cloud-mirror.sh
 ```
 
 **Rebuild app after code changes**
 ```bash
-cd ~/BenStudio/EaseMirror
+cd ~/ghost-mirror
 ./scripts/build.sh --release
-open ~/BenStudio/EaseMirror/Ease\ Mirror.app
+open ~/ghost-mirror/Ease\ Mirror.app
 ```
 
 **List mirrors**
 ```bash
-.build/release/ease-mirror-cli list
+.build/release/ghost-mirror-cli list
 ```
 
 ---
 
 ## What NOT to do (YouTube wrong way)
 
-| ❌ Wrong | ✅ Ease Mirror way |
+| ❌ Wrong | ✅ Ghost Mirror way |
 |---------|-------------------|
-| Microsoft Remote Desktop | Ease Mirror → Open Cloud Desktop |
+| Microsoft Remote Desktop | Ghost Mirror → Open Cloud Desktop |
 | Random RDP ports open | SSH tunnel only |
 | Parallels / UTM with no vault | Ghost Cloud + GhostHome |
 | Skip ISO, wonder why it fails | Step 8 — download ISO first |
@@ -220,13 +220,13 @@ open ~/BenStudio/EaseMirror/Ease\ Mirror.app
 
 | Item | Value |
 |------|-------|
-| IP | from `EASE_MIRROR_CLOUD_IP` in env |
+| IP | from `GHOST_MIRROR_CLOUD_IP` in env |
 | User | `root` |
-| SSH key | from `EASE_MIRROR_SSH_KEY` in env |
-| Ghost web | from `EASE_MIRROR_GHOST_URL` in env |
+| SSH key | from `GHOST_MIRROR_SSH_KEY` in env |
+| Ghost web | from `GHOST_MIRROR_GHOST_URL` in env |
 | GhostHome | `/root/GhostHome` |
 | Desktop | XFCE + TigerVNC + noVNC |
 
 ---
 
-*Ease Mirror — Ease Audio. Linux only. No Microsoft.*
+*Ghost Mirror — Ghost Mirror. Linux only. No Microsoft.*

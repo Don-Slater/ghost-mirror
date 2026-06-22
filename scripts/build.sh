@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Build Ease Mirror.app — SwiftPM + .app bundle + optional codesign.
+# Build Ghost Mirror.app — SwiftPM + .app bundle + optional codesign.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP_NAME="Ease Mirror"
+APP_NAME="Ghost Mirror"
 BUNDLE="${ROOT}/${APP_NAME}.app"
 BUILD_CFG="release"
 CODESIGN_IDENTITY="${CODESIGN_IDENTITY:-}"
@@ -19,7 +19,7 @@ done
 
 cd "$ROOT"
 
-echo "=== Ease Mirror build ($BUILD_CFG) ==="
+echo "=== Ghost Mirror build ($BUILD_CFG) ==="
 
 chmod +x scripts/*.sh 2>/dev/null || true
 mkdir -p "${ROOT}/Resources"
@@ -28,11 +28,11 @@ bash "${ROOT}/scripts/make-app-icon.sh" 2>/dev/null || echo "Icon generation ski
 if [[ "$BUILD_CFG" == "release" ]]; then
   swift build -c release
   BIN="${ROOT}/.build/release/EaseMirror"
-  CLI="${ROOT}/.build/release/ease-mirror-cli"
+  CLI="${ROOT}/.build/release/ghost-mirror-cli"
 else
   swift build
   BIN="${ROOT}/.build/debug/EaseMirror"
-  CLI="${ROOT}/.build/debug/ease-mirror-cli"
+  CLI="${ROOT}/.build/debug/ghost-mirror-cli"
 fi
 
 rm -rf "$BUNDLE"
@@ -48,7 +48,7 @@ if [[ -f "${ROOT}/Resources/ghost-mirror-logo-replica.png" ]]; then
 fi
 
 cp "$BIN" "${BUNDLE}/Contents/MacOS/EaseMirror"
-cp "$CLI" "${BUNDLE}/Contents/MacOS/ease-mirror-cli"
+cp "$CLI" "${BUNDLE}/Contents/MacOS/ghost-mirror-cli"
 cp -R "${ROOT}/scripts/." "${BUNDLE}/Contents/Resources/scripts/"
 chmod +x "${BUNDLE}/Contents/Resources/scripts/"*.sh
 chmod +x "${BUNDLE}/Contents/MacOS/"*
@@ -67,9 +67,9 @@ cat >"${BUNDLE}/Contents/Info.plist" <<PLIST
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
   <key>CFBundleName</key>
-  <string>Ease Mirror</string>
+  <string>Ghost Mirror</string>
   <key>CFBundleDisplayName</key>
-  <string>Ease Mirror</string>
+  <string>Ghost Mirror</string>
   <key>CFBundleIconFile</key>
   <string>AppIcon</string>
   <key>CFBundlePackageType</key>
@@ -94,7 +94,7 @@ if [[ -n "$CODESIGN_IDENTITY" ]]; then
     --entitlements "${ROOT}/EaseMirror.entitlements" \
     --sign "$CODESIGN_IDENTITY" \
     "${BUNDLE}/Contents/MacOS/EaseMirror" \
-    "${BUNDLE}/Contents/MacOS/ease-mirror-cli"
+    "${BUNDLE}/Contents/MacOS/ghost-mirror-cli"
   codesign --force --options runtime \
     --entitlements "${ROOT}/EaseMirror.entitlements" \
     --sign "$CODESIGN_IDENTITY" \
@@ -105,7 +105,7 @@ else
   codesign --force -s - \
     --entitlements "${ROOT}/EaseMirror.entitlements" \
     "${BUNDLE}/Contents/MacOS/EaseMirror" \
-    "${BUNDLE}/Contents/MacOS/ease-mirror-cli"
+    "${BUNDLE}/Contents/MacOS/ghost-mirror-cli"
   codesign --force -s - \
     --entitlements "${ROOT}/EaseMirror.entitlements" \
     "$BUNDLE"

@@ -19,7 +19,7 @@ Options:
   -h, --help  Show this help
 
 Runs release build checks on ${APP_NAME}.app bundle contents, icon assets,
-hero logo PNG, codesign, and ease-mirror-cli smoke commands.
+hero logo PNG, codesign, and ghost-mirror-cli smoke commands.
 EOF
 }
 
@@ -74,7 +74,7 @@ section "Bundle structure"
 check "app bundle exists" test -d "$TARGET_BUNDLE"
 check "Info.plist exists" test -f "$PLIST"
 check "EaseMirror binary exists" test -x "${MACOS}/EaseMirror"
-check "ease-mirror-cli exists" test -x "${MACOS}/ease-mirror-cli"
+check "ghost-mirror-cli exists" test -x "${MACOS}/ghost-mirror-cli"
 check "AppIcon.icns bundled" test -f "${RES}/AppIcon.icns"
 check "hero logo PNG bundled" test -f "${RES}/ghost-mirror-logo-replica.png"
 check "scripts directory bundled" test -d "${RES}/scripts"
@@ -134,9 +134,9 @@ else
 fi
 
 section "CLI smoke"
-check "cli help exits 0" "${MACOS}/ease-mirror-cli" help
-check "cli paths exits 0" "${MACOS}/ease-mirror-cli" paths
-check "cli list exits 0" "${MACOS}/ease-mirror-cli" list
+check "cli help exits 0" "${MACOS}/ghost-mirror-cli" help
+check "cli paths exits 0" "${MACOS}/ghost-mirror-cli" paths
+check "cli list exits 0" "${MACOS}/ghost-mirror-cli" list
 
 section "Icon generation (idempotent)"
 bash "${ROOT}/scripts/make-app-icon.sh" >/dev/null

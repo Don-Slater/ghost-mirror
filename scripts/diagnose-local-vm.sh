@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-CLI="${ROOT}/.build/release/ease-mirror-cli"
+CLI="${ROOT}/.build/release/ghost-mirror-cli"
 REPAIR=0
 
 [[ "${1:-}" == "--repair" ]] && REPAIR=1
@@ -36,7 +36,7 @@ else
 fi
 
 if [[ -x "$CLI" ]]; then
-  pass "ease-mirror-cli"
+  pass "ghost-mirror-cli"
 else
   fail "CLI missing — run: cd ${ROOT} && swift build -c release"
 fi
@@ -56,10 +56,10 @@ if [[ -f "$ISO" ]]; then
   if [[ "$SZ" -gt 2500000000 ]]; then
     pass "Ubuntu ISO ($(($SZ / 1000000000))GB)"
   else
-    fail "ISO too small — re-download: ease-mirror-cli download-iso"
+    fail "ISO too small — re-download: ghost-mirror-cli download-iso"
   fi
 else
-  fail "ISO missing — ease-mirror-cli download-iso"
+  fail "ISO missing — ghost-mirror-cli download-iso"
 fi
 
 echo ""

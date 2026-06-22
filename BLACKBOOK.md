@@ -1,4 +1,4 @@
-# Ease Mirror — Black Book
+# Ghost Mirror — Black Book
 
 Engineering notebook for the **final build**. Cheap model ships without these polished; this doc is where the fiddly bits live.
 
@@ -11,7 +11,7 @@ Engineering notebook for the **final build**. Cheap model ships without these po
 
 ```
 Mac host          Ghost Cloud (vault)         Linux guest
-Ease Mirror app   IPFS + web UI               local VM  OR  VPS cloud desktop
+Ghost Mirror app   IPFS + web UI               local VM  OR  VPS cloud desktop
      │                    │                         │
      └──── same files ────┴──── same files ──────────┘
               GhostHome: Documents / Downloads / Projects
@@ -83,12 +83,12 @@ Recommended final approach:
 ### What works
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-desktop.sh
+bash ~/ghost-mirror/scripts/connect-cloud-desktop.sh
 ```
 
 - SSH tunnel `localhost:6080` → VPS noVNC
 - Opens **browser** with password in URL (stable)
-- VNC password: set in `~/.ben_studio/ease_mirror_cloud.env` (see `config/ease_mirror_cloud.env.example`)
+- VNC password: set in `~/.ben_studio/ghost_mirror_cloud.env` (see `config/ghost_mirror_cloud.env.example`)
 
 ### What breaks
 
@@ -128,8 +128,8 @@ Also fixed for Linux install: `VZGenericPlatformConfiguration`, ISO on **USB** (
 
 ### ISO
 
-- Path: `~/Library/Application Support/EaseMirror/ISOs/ubuntu-24.04.4-desktop-arm64.iso`
-- CLI: `.build/release/ease-mirror-cli download-iso`
+- Path: `~/Library/Application Support/GhostMirror/ISOs/ubuntu-24.04.4-desktop-arm64.iso`
+- CLI: `.build/release/ghost-mirror-cli download-iso`
 - Must be **ARM64** desktop ISO on Apple Silicon
 
 ### After install
@@ -140,8 +140,8 @@ Also fixed for Linux install: `VZGenericPlatformConfiguration`, ISO on **USB** (
 
 ### VirtioFS share
 
-- Host: `~/Library/Application Support/EaseMirror/Share`
-- Guest tag: `EaseMirrorShare`
+- Host: `~/Library/Application Support/GhostMirror/Share`
+- Guest tag: `GhostMirrorShare`
 - Guest mount (after install): mount virtiofs, run `wire-ghost-home.sh`
 
 ### Entitlements
@@ -155,13 +155,13 @@ Also fixed for Linux install: `VZGenericPlatformConfiguration`, ISO on **USB** (
 
 ### URLs & env
 
-File: `~/.ben_studio/ease_mirror_cloud.env`
+File: `~/.ben_studio/ghost_mirror_cloud.env`
 
 ```
-EASE_MIRROR_CLOUD_IP=203.0.113.10
-EASE_MIRROR_GHOST_URL=https://your-ghostcloud.example.com
-EASE_MIRROR_VNC_PASSWORD=your-vnc-password
-EASE_MIRROR_SSH_KEY=~/.ssh/your_key
+GHOST_MIRROR_CLOUD_IP=203.0.113.10
+GHOST_MIRROR_GHOST_URL=https://your-ghostcloud.example.com
+GHOST_MIRROR_VNC_PASSWORD=your-vnc-password
+GHOST_MIRROR_SSH_KEY=~/.ssh/your_key
 ```
 
 ### Mac setup
@@ -188,7 +188,7 @@ bash ~/BenStudio/scripts/ghostcloud-remote/finish-setup.sh
 Tunnel must stay alive while using cloud desktop. Kill stale:
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 ```
 
 ---
@@ -201,7 +201,7 @@ Rules for Ben / app:
 
 1. **Run commands for him** — don’t paste long blocks in chat
 2. **Ghost Cloud → Bridge tab** — web terminal on cloud Linux (`/bridge`)
-3. **Double-click `.command` files** in `EaseMirror/`
+3. **Double-click `.command` files** in `ghost-mirror/`
 4. **App buttons** call scripts — no manual copy
 5. Commands also live in [COMMANDS.md](./COMMANDS.md)
 
@@ -209,7 +209,7 @@ Rules for Ben / app:
 
 - URL: `https://your-ghostcloud.example.com/bridge` (vault login required)
 - Runs commands on **cloud Linux** in `~/GhostHome`
-- Ease Mirror app: **Command Bridge** button opens it
+- Ghost Mirror app: **Command Bridge** button opens it
 - Inbox file for future local VM agent: `~/GhostHome/.ghostcloud/command_inbox.txt`
 
 ---

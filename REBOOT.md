@@ -1,4 +1,4 @@
-# Ease Mirror — Reboot guide
+# Ghost Mirror — Reboot guide
 
 Use this before you shut down Mac and/or VPS. After reboot, run the scan — do not skip steps.
 
@@ -8,11 +8,11 @@ Use this before you shut down Mac and/or VPS. After reboot, run the scan — do 
 
 **1. Note where you are (optional):**
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 ```
 Tunnel stops cleanly. VPS keeps running — that’s fine.
 
-**2. Close Ease Mirror app** (Cmd+Q)
+**2. Close Ghost Mirror app** (Cmd+Q)
 
 **3. Save any open work in Cursor**
 
@@ -45,14 +45,14 @@ Wait ~2 min before scanning.
 Run **one command** — full system scan:
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/post-reboot-scan.sh
+bash ~/ghost-mirror/scripts/post-reboot-scan.sh
 ```
 
 It checks: SSH, VNC, Ghost Cloud, tunnel, app binary, ISO status, and prints **REBOOT LINE** for next step.
 
 **Then open desktop again:**
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-desktop.sh
+bash ~/ghost-mirror/scripts/connect-cloud-desktop.sh
 ```
 
 ---
@@ -60,7 +60,7 @@ bash ~/BenStudio/EaseMirror/scripts/connect-cloud-desktop.sh
 ## Reboot line (memorise this)
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/post-reboot-scan.sh
+bash ~/ghost-mirror/scripts/post-reboot-scan.sh
 ```
 
 Green scan → Phase A7 (use GhostHome) or Phase B (ISO) when you’re ready.

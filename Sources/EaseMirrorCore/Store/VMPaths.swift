@@ -2,8 +2,13 @@ import Foundation
 
 public enum VMPaths {
     public static let appSupport: URL = {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        return base.appendingPathComponent("EaseMirror", isDirectory: true)
+        let fm = FileManager.default
+        let base = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let primary = base.appendingPathComponent("GhostMirror", isDirectory: true)
+        let legacy = base.appendingPathComponent("EaseMirror", isDirectory: true)
+        if fm.fileExists(atPath: primary.path) { return primary }
+        if fm.fileExists(atPath: legacy.path) { return legacy }
+        return primary
     }()
 
     public static let vmsRoot: URL = appSupport.appendingPathComponent("VMs", isDirectory: true)

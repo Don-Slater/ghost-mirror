@@ -1,6 +1,6 @@
 # Ghost Mirror — Full setup & use guide
 
-**Ease Audio™** · plain steps · one block at a time
+**Ghost Mirror™** · plain steps · one block at a time
 
 <p align="center">
   <img src="Resources/ghost-mirror-logo-replica.png" alt="Ghost Mirror" width="400">
@@ -13,16 +13,16 @@
 | Piece | What it is | Where it runs |
 |-------|------------|---------------|
 | **Ghost Cloud** | Encrypted file vault (email login, 25 MB free) | **Your VPS** or local Mac for testing |
-| **Ease Mirror** | Ubuntu Linux desktop inside a Mac app | **Your Mac** (Apple Silicon) |
+| **Ghost Mirror** | Ubuntu Linux desktop inside a Mac app | **Your Mac** (Apple Silicon) |
 | **Cloud desktop** | Same Linux, in browser via SSH | **Your VPS** (optional) |
 
-You can use **Ghost Cloud alone** (web only) or **Ease Mirror + Ghost Cloud** (Mac app + vault on your server).
+You can use **Ghost Cloud alone** (web only) or **Ghost Mirror + Ghost Cloud** (Mac app + vault on your server).
 
 ---
 
 ## Before you start
 
-### Mac (Ease Mirror)
+### Mac (Ghost Mirror)
 
 - Apple Silicon Mac (M1 or later)
 - macOS 13 Ventura or newer
@@ -132,12 +132,12 @@ Without SMTP, the reset link appears on screen after you submit forgot-password.
 
 ---
 
-# Part 2 — Ease Mirror on your Mac (local Linux)
+# Part 2 — Ghost Mirror on your Mac (local Linux)
 
 ## Step 1 — Get the code
 
 ```bash
-cd ~/BenStudio/EaseMirror
+cd ~/ghost-mirror
 # or: git clone https://github.com/Don-Slater/ghost-mirror.git && cd ghost-mirror
 ```
 
@@ -150,13 +150,13 @@ cd ~/BenStudio/EaseMirror
 If macOS blocks the app:
 
 ```bash
-xattr -cr "Ease Mirror.app"
+xattr -cr "Ghost Mirror.app"
 ```
 
-## Step 3 — Open Ease Mirror
+## Step 3 — Open Ghost Mirror
 
 ```bash
-open "Ease Mirror.app"
+open "Ghost Mirror.app"
 ```
 
 ## Step 4 — Download Ubuntu ISO
@@ -166,16 +166,16 @@ In the app: click **Download ISO** (~3 GB, Ubuntu 24.04 ARM64).
 Or in Terminal:
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/download-ubuntu-iso.sh
+bash ~/ghost-mirror/scripts/download-ubuntu-iso.sh
 ```
 
-ISO saves to: `~/Library/Application Support/EaseMirror/ISOs/`
+ISO saves to: `~/Library/Application Support/GhostMirror/ISOs/`
 
 ## Step 5 — Install Ubuntu (first time only)
 
 1. In the app, click **Start** (install mode).
 2. Ubuntu installer opens in the window — complete install.
-3. When desktop appears, click **Mark Installed** in Ease Mirror.
+3. When desktop appears, click **Mark Installed** in Ghost Mirror.
 4. Click **Stop**, then **Start** again — now it boots from disk (not ISO).
 
 Default VM: **4 GB RAM**, **32 GB disk** (sparse — grows as you use it).
@@ -188,7 +188,7 @@ Default VM: **4 GB RAM**, **32 GB disk** (sparse — grows as you use it).
 | Stop Linux | **Stop** |
 | Open terminal in guest | Ubuntu Terminal app inside the window |
 | Fix boot issues | **Repair Boot** or `Diagnose Local VM.command` |
-| Check paths | `.build/release/ease-mirror-cli paths` |
+| Check paths | `.build/release/ghost-mirror-cli paths` |
 
 ---
 
@@ -198,18 +198,18 @@ Default VM: **4 GB RAM**, **32 GB disk** (sparse — grows as you use it).
 
 ```bash
 mkdir -p ~/.ben_studio
-cp ~/BenStudio/EaseMirror/config/ease_mirror_cloud.env.example ~/.ben_studio/ease_mirror_cloud.env
-chmod 600 ~/.ben_studio/ease_mirror_cloud.env
+cp ~/ghost-mirror/config/ghost_mirror_cloud.env.example ~/.ben_studio/ghost_mirror_cloud.env
+chmod 600 ~/.ben_studio/ghost_mirror_cloud.env
 ```
 
 Edit the file — set **your** values:
 
 ```bash
-EASE_MIRROR_CLOUD_IP=YOUR_VPS_IP
-EASE_MIRROR_GHOST_URL=https://cloud.yoursite.com
-EASE_MIRROR_CLOUD_USER=root
-EASE_MIRROR_SSH_KEY=/Users/YOURNAME/.ssh/id_ed25519
-EASE_MIRROR_VNC_PASSWORD=your-vnc-password
+GHOST_MIRROR_CLOUD_IP=YOUR_VPS_IP
+GHOST_MIRROR_GHOST_URL=https://cloud.yoursite.com
+GHOST_MIRROR_CLOUD_USER=root
+GHOST_MIRROR_SSH_KEY=/Users/YOURNAME/.ssh/id_ed25519
+GHOST_MIRROR_VNC_PASSWORD=your-vnc-password
 ```
 
 Or in the app: **View → Full Mode → VPS Settings**.
@@ -221,7 +221,7 @@ Or in the app: **View → Full Mode → VPS Settings**.
 **From Terminal:**
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-desktop.sh
+bash ~/ghost-mirror/scripts/connect-cloud-desktop.sh
 ```
 
 This opens a browser window to your VPS desktop (needs VNC set up on the server — see advanced below).
@@ -229,12 +229,12 @@ This opens a browser window to your VPS desktop (needs VNC set up on the server 
 **Quick SSH check:**
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
+bash ~/ghost-mirror/scripts/connect-cloud-mirror.sh --check
 ```
 
 ## Step 3 — Open Ghost Cloud from the app
 
-Click **Open Ghost Cloud** — opens your vault URL in the browser (the `EASE_MIRROR_GHOST_URL` you set).
+Click **Open Ghost Cloud** — opens your vault URL in the browser (the `GHOST_MIRROR_GHOST_URL` you set).
 
 ---
 
@@ -246,20 +246,20 @@ On the VPS (once SSH works):
 
 ```bash
 # From Mac — copies and runs desktop setup on VPS
-bash ~/BenStudio/EaseMirror/scripts/setup-cloud-desktop.sh YOUR_VPS_IP
+bash ~/ghost-mirror/scripts/setup-cloud-desktop.sh YOUR_VPS_IP
 ```
 
 Then on Mac, start the tunnel:
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP start
 open "http://127.0.0.1:6080/vnc.html?autoconnect=true&resize=scale"
 ```
 
 Stop tunnel:
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
+bash ~/ghost-mirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 ```
 
 ---
@@ -268,7 +268,7 @@ bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 
 ### Producer on Mac (typical)
 
-1. Open **Ease Mirror** → **Start** Ubuntu for local tools.
+1. Open **Ghost Mirror** → **Start** Ubuntu for local tools.
 2. Click **Open Ghost Cloud** → upload/download WAVs, stems, projects.
 3. Work in **Logic** on Mac; files live in Ghost Cloud vault.
 4. **Stop** VM when done.
@@ -284,7 +284,7 @@ bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 
 | Problem | Fix |
 |---------|-----|
-| Cannot open Ease Mirror.app | `xattr -cr "Ease Mirror.app"` |
+| Cannot open Ghost Mirror.app | `xattr -cr "Ghost Mirror.app"` |
 | ISO missing | Download ISO in app or run `download-ubuntu-iso.sh` |
 | VM won't boot | **Repair Boot** or `bash scripts/diagnose-local-vm.sh` |
 | Ghost Cloud site won't load | Check VPS firewall (443 or 8787), `systemctl status ghostcloud-app` |
@@ -298,18 +298,18 @@ bash ~/BenStudio/EaseMirror/scripts/tunnel-cloud-vnc.sh YOUR_VPS_IP stop
 # CLI cheatsheet
 
 ```bash
-# Ease Mirror
-cd ~/BenStudio/EaseMirror
+# Ghost Mirror
+cd ~/ghost-mirror
 ./scripts/build.sh --release
-.build/release/ease-mirror-cli list
-.build/release/ease-mirror-cli create "My Mirror" --memory 4 --disk 32
-.build/release/ease-mirror-cli download-iso
+.build/release/ghost-mirror-cli list
+.build/release/ghost-mirror-cli create "My Mirror" --memory 4 --disk 32
+.build/release/ghost-mirror-cli download-iso
 
 # Ghost Cloud health (on VPS)
 curl -s http://127.0.0.1:8787/health | jq
 
 # After Mac reboot — cloud check
-bash ~/BenStudio/EaseMirror/scripts/post-reboot-scan.sh
+bash ~/ghost-mirror/scripts/post-reboot-scan.sh
 ```
 
 ---
@@ -327,4 +327,4 @@ bash ~/BenStudio/EaseMirror/scripts/post-reboot-scan.sh
 
 ---
 
-**Ease Audio™** · Ghost Mirror · Ghost Cloud · tools for producers who ship.
+**Ghost Mirror™** · Ghost Mirror · Ghost Cloud · tools for producers who ship.

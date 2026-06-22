@@ -1,4 +1,4 @@
-# Ease Mirror — Project Status (parked)
+# Ghost Mirror — Project Status (parked)
 
 **Last checked:** 2026-06-21  
 **Version:** 0.1.0  
@@ -9,14 +9,14 @@
 ## Reboot line — after full system restart
 
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/post-reboot-scan.sh
+bash ~/ghost-mirror/scripts/post-reboot-scan.sh
 ```
 
 Full instructions: **[REBOOT.md](./REBOOT.md)**
 
 Quick health only:
 ```bash
-bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
+bash ~/ghost-mirror/scripts/connect-cloud-mirror.sh --check
 ```
 
 ---
@@ -25,8 +25,8 @@ bash ~/BenStudio/EaseMirror/scripts/connect-cloud-mirror.sh --check
 
 ```
 DONE  A1–A6  VPS + Ghost Cloud + VNC; Ghost Cloud opened from Linux ✓
-DONE  B1–B2  ISO downloaded + local mirror "Ease Mirror" created
-NEXT  B3     Open Ease Mirror.app → Start → install Ubuntu
+DONE  B1–B2  ISO downloaded + local mirror "Ghost Mirror" created
+NEXT  B3     Open Ghost Mirror.app → Start → install Ubuntu
 LATER B4+    GhostHome wire, clipboard (HITLIST.md), sign/sell
 ```
 
@@ -74,4 +74,4 @@ LATER B4+    GhostHome wire, clipboard (HITLIST.md), sign/sell
 
 ---
 
-*Ease Mirror — Ease Audio. Parked tidy. Reboot → scan → forward.*
+*Ghost Mirror — Ghost Mirror. Parked tidy. Reboot → scan → forward.*

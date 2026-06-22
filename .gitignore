@@ -13,7 +13,7 @@
 
 # Local / private config (never publish)
 .ben_studio/
-ease_mirror_cloud.env
+ghost_mirror_cloud.env
 *.local.env
 
 # Internal handoff (optional — keep out of public repo)

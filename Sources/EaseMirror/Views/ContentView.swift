@@ -165,7 +165,7 @@ struct ContentView: View {
 struct CreateMirrorSheet: View {
     @EnvironmentObject private var appModel: AppModel
     @Environment(\.dismiss) private var dismiss
-    @State private var name = "Ease Mirror"
+    @State private var name = "Ghost Mirror"
     @State private var memoryGB = 8
     @State private var diskGB = 32
 

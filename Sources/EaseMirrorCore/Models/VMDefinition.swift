@@ -57,7 +57,7 @@ public enum EaseMirrorError: LocalizedError, Sendable {
     public var errorDescription: String? {
         switch self {
         case .unsupportedPlatform:
-            return "Ease Mirror requires Apple Silicon and macOS 13 or later."
+            return "Ghost Mirror requires Apple Silicon and macOS 13 or later."
         case let .vmNotFound(id):
             return "Mirror not found: \(id.uuidString)"
         case let .configurationInvalid(msg):

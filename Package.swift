@@ -7,7 +7,7 @@ let package = Package(
     products: [
         .library(name: "EaseMirrorCore", targets: ["EaseMirrorCore"]),
         .executable(name: "EaseMirror", targets: ["EaseMirror"]),
-        .executable(name: "ease-mirror-cli", targets: ["EaseMirrorCLI"]),
+        .executable(name: "ghost-mirror-cli", targets: ["EaseMirrorCLI"]),
     ],
     targets: [
         .target(

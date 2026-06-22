@@ -1,4 +1,4 @@
-# Ease Mirror — Build order (Linux-native only)
+# Ghost Mirror — Build order (Linux-native only)
 
 **After reboot:** [REBOOT.md](./REBOOT.md) → run `post-reboot-scan.sh`  
 **State:** [STATUS.md](./STATUS.md) — parked at A6 confirmed

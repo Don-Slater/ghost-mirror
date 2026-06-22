@@ -1,4 +1,4 @@
-# Ease Mirror — First impression scan
+# Ghost Mirror — First impression scan
 
 **Scanned:** 2026-06-21  
 **Verdict:** PASS — ready for first dollars with install in progress

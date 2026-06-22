@@ -137,7 +137,7 @@ final class AppModel: ObservableObject {
 
     func startUbuntu() async {
         if mirrors.isEmpty {
-            createMirror(name: "Ease Mirror", memoryGB: 4, diskGB: 32)
+            createMirror(name: "Ghost Mirror", memoryGB: 4, diskGB: 32)
             refresh()
         }
         guard let vm = selectedMirror ?? mirrors.first else {

@@ -8,7 +8,7 @@ struct CloudDesktopView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Label("Ease Mirror Cloud", systemImage: "rectangle.on.rectangle.angled")
+                Label("Ghost Mirror Cloud", systemImage: "rectangle.on.rectangle.angled")
                     .font(.headline)
                 Spacer()
                 Text("Linux · XFCE · VNC")

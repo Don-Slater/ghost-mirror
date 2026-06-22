@@ -1,4 +1,4 @@
-# Ease Mirror — Cheap Model (v0)
+# Ghost Mirror — Cheap Model (v0)
 
 Shippable **lite tier** built off the same app. Proves the product; final polish lives in [BLACKBOOK.md](./BLACKBOOK.md).
 
@@ -28,7 +28,7 @@ Default on launch. **View → Full Mode** unlocks engineer sidebar (provision VP
 | Button | Action |
 |--------|--------|
 | Start / Stop | Local VM |
-| Open Ghost Cloud | Browser → `EASE_MIRROR_GHOST_URL` |
+| Open Ghost Cloud | Browser → `GHOST_MIRROR_GHOST_URL` |
 | Cloud Desktop | Runs `connect-cloud-desktop.sh` → browser |
 | Download ISO | Same as before |
 | Black Book | Opens `BLACKBOOK.md` in default editor |
@@ -40,11 +40,11 @@ Scripts do the work — no copy/paste from chat.
 ## Build & run
 
 ```bash
-cd ~/BenStudio/EaseMirror && ./scripts/build.sh --release
-open "Ease Mirror.app"
+cd ~/ghost-mirror && ./scripts/build.sh --release
+open "Ghost Mirror.app"
 ```
 
-Local mirror default: **Ease Mirror** (4 GB RAM / 32 GB disk).  
+Local mirror default: **Ghost Mirror** (4 GB RAM / 32 GB disk).  
 Next human step: **Start** → install Ubuntu → **Mark Installed**.
 
 ---

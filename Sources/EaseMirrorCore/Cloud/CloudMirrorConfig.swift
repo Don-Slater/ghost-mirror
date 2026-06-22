@@ -23,9 +23,17 @@ public struct VPSSettings: Sendable, Equatable {
 }
 
 public enum CloudMirrorConfig: Sendable {
+    private static let envFileName = "ghost_mirror_cloud.env"
+    private static let legacyEnvFileName = "ease_mirror_cloud.env"
+
     public static func envPath() -> URL {
-        FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent(".ben_studio/ease_mirror_cloud.env")
+        let dir = FileManager.default.homeDirectoryForCurrentUser
+            .appendingPathComponent(".ben_studio", isDirectory: true)
+        let primary = dir.appendingPathComponent(envFileName)
+        let legacy = dir.appendingPathComponent(legacyEnvFileName)
+        if FileManager.default.fileExists(atPath: primary.path) { return primary }
+        if FileManager.default.fileExists(atPath: legacy.path) { return legacy }
+        return primary
     }
 
     public static func load() -> [String: String] {
@@ -42,43 +50,49 @@ public enum CloudMirrorConfig: Sendable {
         return map
     }
 
+    private static func value(_ map: [String: String], _ key: String, legacy: String? = nil) -> String? {
+        if let v = map[key], !v.isEmpty { return v }
+        if let legacy, let v = map[legacy], !v.isEmpty { return v }
+        return nil
+    }
+
     public static var settings: VPSSettings {
         let map = load()
         return VPSSettings(
-            ip: map["EASE_MIRROR_CLOUD_IP"] ?? "",
-            ghostURL: map["EASE_MIRROR_GHOST_URL"] ?? "",
-            sshUser: map["EASE_MIRROR_CLOUD_USER"] ?? "root",
-            sshKeyPath: map["EASE_MIRROR_SSH_KEY"] ?? VPSSettings.defaultSSHKey,
-            vncPassword: map["EASE_MIRROR_VNC_PASSWORD"] ?? ""
+            ip: value(map, "GHOST_MIRROR_CLOUD_IP", legacy: "EASE_MIRROR_CLOUD_IP") ?? "",
+            ghostURL: value(map, "GHOST_MIRROR_GHOST_URL", legacy: "EASE_MIRROR_GHOST_URL") ?? "",
+            sshUser: value(map, "GHOST_MIRROR_CLOUD_USER", legacy: "EASE_MIRROR_CLOUD_USER") ?? "root",
+            sshKeyPath: value(map, "GHOST_MIRROR_SSH_KEY", legacy: "EASE_MIRROR_SSH_KEY") ?? VPSSettings.defaultSSHKey,
+            vncPassword: value(map, "GHOST_MIRROR_VNC_PASSWORD", legacy: "EASE_MIRROR_VNC_PASSWORD") ?? ""
         )
     }
 
     public static func save(_ settings: VPSSettings) throws {
         var map = load()
-        map["EASE_MIRROR_CLOUD_IP"] = settings.ip.trimmingCharacters(in: .whitespacesAndNewlines)
-        map["EASE_MIRROR_GHOST_URL"] = settings.ghostURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        map["EASE_MIRROR_CLOUD_USER"] = settings.sshUser.trimmingCharacters(in: .whitespacesAndNewlines)
-        map["EASE_MIRROR_SSH_KEY"] = settings.sshKeyPath.trimmingCharacters(in: .whitespacesAndNewlines)
-        map["EASE_MIRROR_VNC_PASSWORD"] = settings.vncPassword
-        map["EASE_MIRROR_SAVED_AT"] = ISO8601DateFormatter().string(from: Date())
+        map["GHOST_MIRROR_CLOUD_IP"] = settings.ip.trimmingCharacters(in: .whitespacesAndNewlines)
+        map["GHOST_MIRROR_GHOST_URL"] = settings.ghostURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        map["GHOST_MIRROR_CLOUD_USER"] = settings.sshUser.trimmingCharacters(in: .whitespacesAndNewlines)
+        map["GHOST_MIRROR_SSH_KEY"] = settings.sshKeyPath.trimmingCharacters(in: .whitespacesAndNewlines)
+        map["GHOST_MIRROR_VNC_PASSWORD"] = settings.vncPassword
+        map["GHOST_MIRROR_SAVED_AT"] = ISO8601DateFormatter().string(from: Date())
 
         let dir = envPath().deletingLastPathComponent()
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
 
         let preferredOrder = [
-            "EASE_MIRROR_CLOUD_IP",
-            "EASE_MIRROR_GHOST_URL",
-            "EASE_MIRROR_CLOUD_USER",
-            "EASE_MIRROR_SSH_KEY",
-            "EASE_MIRROR_VNC_PASSWORD",
-            "EASE_MIRROR_NOVNC_LOCAL",
-            "EASE_MIRROR_HOST",
-            "EASE_MIRROR_DESKTOP",
-            "EASE_MIRROR_SAVED_AT",
-            "EASE_MIRROR_WIRED_AT",
-            "EASE_MIRROR_DESKTOP_READY",
+            "GHOST_MIRROR_CLOUD_IP",
+            "GHOST_MIRROR_GHOST_URL",
+            "GHOST_MIRROR_CLOUD_USER",
+            "GHOST_MIRROR_SSH_KEY",
+            "GHOST_MIRROR_VNC_PASSWORD",
+            "GHOST_MIRROR_NOVNC_LOCAL",
+            "GHOST_MIRROR_HOST",
+            "GHOST_MIRROR_DESKTOP",
+            "GHOST_MIRROR_SAVED_AT",
+            "GHOST_MIRROR_WIRED_AT",
+            "GHOST_MIRROR_DESKTOP_READY",
         ]
-        var lines = ["# Ease Mirror VPS — saved from app"]
+        var lines = ["# Ghost Mirror VPS — saved from app"]
         var written = Set<String>()
         for key in preferredOrder {
             guard let value = map[key] else { continue }
@@ -90,8 +104,10 @@ public enum CloudMirrorConfig: Sendable {
         }
 
         let body = lines.joined(separator: "\n") + "\n"
-        try body.write(to: envPath(), atomically: true, encoding: .utf8)
-        try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: envPath().path)
+        let target = FileManager.default.homeDirectoryForCurrentUser
+            .appendingPathComponent(".ben_studio/\(envFileName)")
+        try body.write(to: target, atomically: true, encoding: .utf8)
+        try FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: target.path)
     }
 
     public static var ip: String { settings.ip }
@@ -111,7 +127,9 @@ public enum CloudMirrorConfig: Sendable {
     public static var vncPassword: String { settings.vncPassword }
 
     public static var novncURL: URL {
-        let base = load()["EASE_MIRROR_NOVNC_LOCAL"] ?? "http://127.0.0.1:6080/vnc.html"
+        let map = load()
+        let base = value(map, "GHOST_MIRROR_NOVNC_LOCAL", legacy: "EASE_MIRROR_NOVNC_LOCAL")
+            ?? "http://127.0.0.1:6080/vnc.html"
         let pass = vncPassword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? vncPassword
         let query = "autoconnect=true&resize=scale&password=\(pass)"
         if base.contains("?") {

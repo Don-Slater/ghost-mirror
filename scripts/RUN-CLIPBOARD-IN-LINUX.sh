@@ -34,7 +34,7 @@ if ! mountpoint -q "$MOUNT" 2>/dev/null; then
   fi
 fi
 
-SCRIPT="$MOUNT/ease-mirror-clipboard-guest.sh"
+SCRIPT="$MOUNT/ghost-mirror-clipboard-guest.sh"
 if [[ ! -x "$SCRIPT" ]]; then
   echo "Script missing at $SCRIPT — restart VM on Mac after Mark Installed."
   exit 1
