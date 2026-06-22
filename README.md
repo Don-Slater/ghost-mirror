@@ -65,8 +65,8 @@ Copy the output and paste it into your VPS provider when you create the server.
 ### Step 1 — Get the code
 
 ```bash
-git clone https://github.com/Don-Slater/ease-mirror.git
-cd ease-mirror
+git clone https://github.com/Don-Slater/ghost-mirror.git
+cd ghost-mirror
 ```
 
 ### Step 2 — Build the app

@@ -138,7 +138,7 @@ Without SMTP, the reset link appears on screen after you submit forgot-password.
 
 ```bash
 cd ~/BenStudio/EaseMirror
-# or: git clone https://github.com/Don-Slater/ease-mirror.git && cd ease-mirror
+# or: git clone https://github.com/Don-Slater/ghost-mirror.git && cd ghost-mirror
 ```
 
 ## Step 2 — Build the app
