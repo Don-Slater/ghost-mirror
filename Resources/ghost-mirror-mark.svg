@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" role="img" aria-label="Ghost Mirror">
+  <path fill="#ffffff" d="
+    M 60 8
+    C 28 8 8 34 8 62
+    L 8 118
+    L 28 104
+    L 48 118
+    L 68 102
+    L 88 118
+    L 108 102
+    L 112 118
+    L 112 62
+    C 112 34 92 8 60 8
+    Z
+  "/>
+  <ellipse cx="44" cy="58" rx="9" ry="12" fill="#07080c"/>
+  <ellipse cx="76" cy="58" rx="9" ry="12" fill="#07080c"/>
+</svg>

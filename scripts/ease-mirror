@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Open Ease Mirror — type: ease-mirror
+set -euo pipefail
+
+BEN_STUDIO="${BEN_STUDIO:-$HOME/BenStudio}"
+APP="/Applications/Ease Mirror.app"
+if [[ ! -d "$APP" ]]; then
+  APP="${BEN_STUDIO}/EaseMirror/Ease Mirror.app"
+fi
+CLI="${APP}/Contents/MacOS/ease-mirror-cli"
+
+if [[ ! -d "$APP" ]]; then
+  echo "Ease Mirror.app not found." >&2
+  echo "Build it: bash ${BEN_STUDIO}/EaseMirror/scripts/build.sh --release" >&2
+  exit 1
+fi
+
+if [[ $# -gt 0 ]]; then
+  exec "$CLI" "$@"
+fi
+
+open "$APP"

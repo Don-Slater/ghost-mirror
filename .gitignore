@@ -1,0 +1,24 @@
+# Build
+.build/
+.swiftpm/
+*.dSYM/
+*.swiftmodule
+
+# App bundles — build with ./scripts/build.sh
+*.app/
+
+# macOS
+.DS_Store
+*.xcuserstate
+
+# Local / private config (never publish)
+.ben_studio/
+ease_mirror_cloud.env
+*.local.env
+
+# Internal handoff (optional — keep out of public repo)
+CURSOR_HANDOFF.md
+CURSOR_DIAGNOSTIC_REPORT.md
+
+# User VM data lives outside repo:
+# ~/Library/Application Support/EaseMirror/

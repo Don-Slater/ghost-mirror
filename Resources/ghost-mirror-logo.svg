@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 260" role="img" aria-labelledby="title desc">
+  <title id="title">Ghost Mirror</title>
+  <desc id="desc">White ghost mark and Ghost Mirror wordmark on black.</desc>
+  <rect width="1024" height="260" rx="0" fill="#000000"/>
+  <g transform="translate(48 48)">
+    <path fill="#ffffff" d="
+      M 76 0
+      C 35 0 10 32 10 75
+      C 10 105 0 121 0 121
+      C 0 125 4 128 8 126
+      L 33 113
+      L 53 151
+      C 61 164 73 164 81 151
+      L 99 120
+      L 121 151
+      C 129 163 141 163 149 151
+      L 171 114
+      L 199 128
+      C 203 130 207 127 207 123
+      C 207 123 196 105 196 75
+      C 196 32 117 0 76 0
+      Z
+    "/>
+    <ellipse cx="65" cy="62" rx="11" ry="17" fill="#000000"/>
+    <ellipse cx="108" cy="62" rx="11" ry="17" fill="#000000"/>
+  </g>
+  <text
+    x="278"
+    y="154"
+    fill="#ffffff"
+    font-family="'Chakra Petch', 'Eurostile', 'Arial Black', sans-serif"
+    font-size="76"
+    font-weight="700"
+    letter-spacing="10"
+  >GHOST MIRROR</text>
+</svg>
