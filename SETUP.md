@@ -72,7 +72,7 @@ Some clouds use `ubuntu@YOUR_VPS_IP` instead of `root@`.
 **Option A — from GitHub (when repo is public):**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Ease-Audio/ghostcloud/main/scripts/install-vps.sh -o install-vps.sh
+curl -fsSL https://raw.githubusercontent.com/Don-Slater/ghostcloud/main/scripts/install-vps.sh -o install-vps.sh
 chmod +x install-vps.sh
 sudo bash install-vps.sh
 ```
@@ -138,7 +138,7 @@ Without SMTP, the reset link appears on screen after you submit forgot-password.
 
 ```bash
 cd ~/BenStudio/EaseMirror
-# or: git clone https://github.com/Ease-Audio/ease-mirror.git && cd ease-mirror
+# or: git clone https://github.com/Don-Slater/ease-mirror.git && cd ease-mirror
 ```
 
 ## Step 2 — Build the app
